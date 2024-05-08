@@ -16,12 +16,13 @@ class MaterialsController < ApplicationController
     if @material.save
       redirect_to materials_path, notice: "Item created successfully!"
     else
-      render: :new :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   def edit
     @material = Material.find(params[:id])
+  end
 
   def update
     @material = Material.find(params[:id])
@@ -42,6 +43,6 @@ class MaterialsController < ApplicationController
 
   private
   def material_params
-    params.require(:material).permit(:name)
+    params.require(:material).permit(:name, :quantity)
   end
 end
