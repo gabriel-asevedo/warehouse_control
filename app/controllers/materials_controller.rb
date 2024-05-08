@@ -1,7 +1,7 @@
 class MaterialsController < ApplicationController
 
   def index
-    @materials = Material.all
+    @materials = Material.paginate(page: params[:page], per_page: 10)
   end
 
   def new
