@@ -1,0 +1,17 @@
+<h2>Edit Item</h2>
+
+<%= form_with model: @material do |form| %>
+    
+    <div>
+        <%= form.label :name, "Item name" %> <br>
+        <%= form.text_field :name, placeholder: "Edit the item name" %>
+        <% @material.errors.full_messages_for(:name).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.submit "Edit Item" %>
+    </div>
+    
+<% end %>

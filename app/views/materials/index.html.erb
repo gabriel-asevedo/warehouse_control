@@ -1,0 +1,17 @@
+<h2>Materials List</h2>
+
+<%= form_tag materials_path, method: :get do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by name" %>
+    <%= submit_tag "Search" %>
+<% end %>
+
+<% @materials.each do |material| %>
+    <div>
+        <h3><%= material.name %></h3>
+        <p>Quantity: <%= material.quantity %></p>
+        <%= link_to "Edit", edit_material_path(@material) %>
+        <%= link_to "Delete", material_path(@material), method: :delete, data: { confirm: "Are you sure?" } %>
+    </div>
+<% end %>
+
+<%= will_paginate @materials %>
