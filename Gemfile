@@ -69,3 +69,5 @@ end
 gem 'devise'
 
 gem 'cssbundling-rails'
+
+gem 'will_paginate'
