@@ -1,25 +1,31 @@
-<h2>New Item</h2>
+<div class="container">
+    <h2 class="display-4 text-center mb-4">New Item</h2>
 
-<%= form_with model: @material do |form| %>
-    
-    <div>
-        <%= form.label :name, "Item name" %> <br>
-        <%= form.text_field :name, placeholder: "Enter the item name" %>
-        <% @material.errors.full_messages_for(:name).each do |message| %>
-            <div><%= message %></div>
-        <% end %>
-    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 border rounded shadow-sm p-4">
+            <%= form_with model: @material do |form| %>
+                    
+                <div class="mb-3">
+                    <%= form.label :name, "Item name", class: "form-label" %> <br>
+                    <%= form.text_field :name, placeholder: "Enter the item name", class: "form-control" %>
+                    <% @material.errors.full_messages_for(:name).each do |message| %>
+                        <div class="invalid-feedback"><%= message %></div>
+                    <% end %>
+                </div>
 
-    <div>
-        <%= form.label :quantity %> <br>
-        <%= form.number_field :quantity, placeholder: "0", min: 0 %>
-        <% @material.errors.full_messages_for(:quantity).each do |message| %>
-            <div><%= message %></div>
-        <% end %>
-    </div>
+                <div class="mb-3">
+                    <%= form.label :quantity, class: "form-label" %> <br>
+                    <%= form.number_field :quantity, placeholder: "0", min: 0, class: "form-control" %>
+                    <% @material.errors.full_messages_for(:quantity).each do |message| %>
+                        <div class="invalid-feedback"><%= message %></div>
+                    <% end %>
+                </div>
 
-    <div>
-        <%= form.submit "Create Item" %>
+                <div class="text-center">
+                    <%= form.submit "Create Item", class: "btn btn-primary" %>
+                </div>
+                    
+            <% end %>
+        </div>
     </div>
-    
-<% end %>
+</div>
