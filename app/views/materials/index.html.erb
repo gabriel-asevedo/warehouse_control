@@ -10,7 +10,7 @@
         <h3><%= material.name %></h3>
         <p>Quantity: <%= material.quantity %></p>
         <%= link_to "Edit", edit_material_path(material) %>
-        <%= link_to "Delete", material_path(material), method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= link_to "Delete", material_path(material), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     </div>
 <% end %>
 
