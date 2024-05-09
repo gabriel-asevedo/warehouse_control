@@ -2,7 +2,7 @@ class MaterialsController < ApplicationController
 
   def index
     @materials = Material.all
-    @materials = @materials.where("nome LIKE ?", "%#{params[:search]}%") if params[:search].present?
+    @materials = @materials.where("name LIKE ?", "%#{params[:search]}%") if params[:search].present?
     @materials = @materials.paginate(page: params[:page], per_page: 10)
   end
 
