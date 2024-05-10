@@ -1,17 +1,45 @@
 <h2>Materials List</h2>
 
-<%= form_tag materials_path, method: :get do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search by name" %>
-    <%= submit_tag "Search" %>
-<% end %>
-
-<% @materials.each do |material| %>
-    <div>
-        <h3><%= material.name %></h3>
-        <p>Quantity: <%= material.quantity %></p>
-        <%= link_to "Edit", edit_material_path(material) %>
-        <%= link_to "Delete", material_path(material), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-lg-6">
+      <%= form_tag materials_path, method: :get, class: "mb-0" do %>
+        <div class="input-group">
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by name" %>
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+      <% end %>
     </div>
-<% end %>
+  </div>
 
-<%= will_paginate @materials %>
+  <div class="row">
+    <div class="col-lg-10">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @materials.each do |material| %>
+              <tr>
+                <td><%= material.id %></td>
+                <td><%= material.name %></td>
+                <td><%= material.quantity %></td>
+                <td>
+                  <%= link_to "Edit", edit_material_path(material), class: "btn btn-primary btn-sm me-1" %>
+                  <%= link_to "Delete", material_path(material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
