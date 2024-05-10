@@ -71,3 +71,7 @@ gem 'devise'
 gem 'cssbundling-rails'
 
 gem 'will_paginate'
+
+gem 'ajax-datatables-rails'
+
+gem 'jquery-datatables'
