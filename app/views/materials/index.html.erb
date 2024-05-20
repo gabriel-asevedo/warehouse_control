@@ -33,7 +33,7 @@
                 <td><%= material.quantity %></td>
                 <td>
                   <%= link_to "Edit", edit_material_path(material), class: "btn btn-primary btn-sm me-1" %>
-                  <%= link_to "Delete", material_path(material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+                  <%= link_to "Delete", material_path(material), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
                 </td>
               </tr>
             <% end %>
