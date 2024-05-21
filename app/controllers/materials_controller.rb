@@ -1,10 +1,10 @@
 class MaterialsController < ApplicationController
 
   def index
-    @materials = Material.all
-    @materials = @materials.where("name LIKE ?", "%#{params[:search]}%") if params[:search].present?
-    @materials = @materials.paginate(page: params[:page], per_page: 10)
+    @q = Material.ransack(params[:q])
+    @materials = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
   end
+
 
   def new
     @material = Material.new

@@ -3,9 +3,9 @@
 <div class="container">
   <div class="row mb-3">
     <div class="col-lg-6">
-      <%= form_tag materials_path, method: :get, class: "mb-0" do %>
+      <%= search_form_for @q, url: materials_path, method: :get, class: "mb-0" do |f| %>
         <div class="input-group">
-          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by name" %>
+          <%= f.search_field :name_cont, class: "form-control", placeholder: "Search by name" %>
           <button class="btn btn-outline-secondary" type="submit">Search</button>
         </div>
       <% end %>
@@ -19,7 +19,6 @@
           
           <thead>
             <tr>
-              <th>ID</th>
               <th>Name</th>
               <th>Quantity</th>
             </tr>
@@ -28,7 +27,6 @@
           <tbody>
             <% @materials.each do |material| %>
               <tr>
-                <td><%= material.id %></td>
                 <td><%= material.name %></td>
                 <td><%= material.quantity %></td>
                 <td>
@@ -40,6 +38,7 @@
           </tbody>
         </table>
       </div>
+      <%= will_paginate @materials %>
     </div>
   </div>
 </div>
