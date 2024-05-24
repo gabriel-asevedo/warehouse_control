@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'logs/index'
+  get 'logs/show'
 
   root 'materials#index'
 
