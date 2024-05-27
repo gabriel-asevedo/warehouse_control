@@ -1,0 +1,67 @@
+<div class="container mt-5">
+  <h2 class="text-center text-dark"><%= @material.name %></h2>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm mb-4" style="height: 100px;">
+        <div class="card-body d-flex flex-column justify-content-center">
+          <div class="row">
+            <div class="col-md-4 text-start">
+              <p><strong>ID:</strong> <%= @material.id %></p>
+            </div>
+            <div class="col-md-4 text-center">
+              <p><strong>Name:</strong> <%= @material.name %></p>
+            </div>
+            <div class="col-md-4 text-end">
+              <p><strong>Quantity:</strong> <%= @material.quantity %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-header bg-primary text-white">
+              <h5 class="card-title mb-0">Add Material</h5>
+            </div>
+            <div class="card-body">
+              <%= form_with url: add_material_path(@material), method: :post do %>
+                <div class="form-group mb-3">
+                  <%= label_tag :quantity, 'Quantity to Add', class: 'form-label' %>
+                  <%= number_field_tag :quantity, nil, class: 'form-control', min: 1 %>
+                </div>
+                <%= submit_tag 'Add', class: 'btn btn-primary btn-sm' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-header bg-danger text-white">
+              <h5 class="card-title mb-0">Remove Material</h5>
+            </div>
+            <div class="card-body">
+              <%= form_with url: remove_material_path(@material), method: :post do %>
+                <div class="form-group mb-3">
+                  <%= label_tag :quantity, 'Quantity to Remove', class: 'form-label' %>
+                  <%= number_field_tag :quantity, nil, class: 'form-control', min: 1 %>
+                </div>
+                <%= submit_tag 'Remove', class: 'btn btn-danger btn-sm' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12 text-center">
+          <%= link_to "Back to List", materials_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+      <h3>Logs</h3>
+      <%= link_to 'View Logs', logs_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

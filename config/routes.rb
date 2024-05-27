@@ -6,5 +6,13 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :materials
+  resources :materials do
+    member do
+      post 'add'
+      post 'remove'
+    end
+  end
+
+  resources :logs, only: [:index, :show]
+
 end
