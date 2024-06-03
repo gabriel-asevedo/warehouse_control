@@ -1,31 +1,35 @@
-<div class="container">
+<div class="container mt-5">
     <h2 class="display-4 text-center mb-4">New Item</h2>
 
     <div class="row justify-content-center">
-        <div class="col-md-6 border rounded shadow-sm p-4">
-            <%= form_with model: @material do |form| %>
-                    
-                <div class="mb-3">
-                    <%= form.label :name, "Item name", class: "form-label" %> <br>
-                    <%= form.text_field :name, placeholder: "Enter the item name", class: "form-control" %>
-                    <% @material.errors.full_messages_for(:name).each do |message| %>
-                        <div class="invalid-feedback"><%= message %></div>
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <%= form_with model: @material, local: true do |form| %>
+                        <%= render "error_messages", resource: @material %>
+
+                        <div class="mb-3">
+                            <%= form.label :name, "Item Name", class: "form-label" %>
+                            <%= form.text_field :name, placeholder: "Enter the item name", class: "form-control #{'is-invalid' if @material.errors[:name].any?}" %>
+                            <% @material.errors.full_messages_for(:name).each do |message| %>
+                                <div class="invalid-feedback"><%= message %></div>
+                            <% end %>
+                        </div>
+
+                        <div class="mb-3">
+                            <%= form.label :quantity, class: "form-label" %>
+                            <%= form.number_field :quantity, placeholder: "0", min: 0, class: "form-control #{'is-invalid' if @material.errors[:quantity].any?}" %>
+                            <% @material.errors.full_messages_for(:quantity).each do |message| %>
+                                <div class="invalid-feedback"><%= message %></div>
+                            <% end %>
+                        </div>
+
+                        <div class="d-grid">
+                            <%= form.submit "Create Item", class: "btn btn-primary btn-lg" %>
+                        </div>
                     <% end %>
                 </div>
-
-                <div class="mb-3">
-                    <%= form.label :quantity, class: "form-label" %> <br>
-                    <%= form.number_field :quantity, placeholder: "0", min: 0, class: "form-control" %>
-                    <% @material.errors.full_messages_for(:quantity).each do |message| %>
-                        <div class="invalid-feedback"><%= message %></div>
-                    <% end %>
-                </div>
-
-                <div class="text-center">
-                    <%= form.submit "Create Item", class: "btn btn-primary" %>
-                </div>
-                    
-            <% end %>
+            </div>
         </div>
     </div>
 </div>
