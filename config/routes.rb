@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  get 'logs/index'
-  get 'logs/show'
 
   root 'materials#index'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   resources :materials do
     member do
@@ -12,7 +10,5 @@ Rails.application.routes.draw do
       post 'remove'
     end
   end
-
-  resources :logs, only: [:index, :show]
 
 end
