@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module WarehouseControl
   class Application < Rails::Application
+
+    config.time_zone = 'Brasilia'
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
