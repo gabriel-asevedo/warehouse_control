@@ -50,22 +50,16 @@ class MaterialsController < ApplicationController
 
   def add
     quantity = params[:quantity].to_i
-    if quantity > 0
-      @material.increment!(:quantity, quantity)
-      Log.create(user: current_user, material: @material, quantity: quantity, action_type: 'add')
+    if @material.add_quantity(current_user, quantity)
       redirect_to @material, notice: 'The item quantity has been added successfully.'
     else
-      redirect_to @material, alert: 'Quantity must be greater than 0.'
+      redirect_to @material, alert: @material.errors.full_messages.to_sentence
     end
   end
 
   def remove
     quantity = params[:quantity].to_i
-    if quantity <= 0 || @material.quantity < quantity
-      redirect_to @material, alert: 'Invalid quantity.'
-    elsif @material.valid?
-      @material.decrement!(:quantity, quantity)
-      Log.create(user: current_user, material: @material, quantity: quantity, action_type: 'remove')
+    if @material.remove_quantity(current_user, quantity)
       redirect_to @material, notice: 'The item quantity was successfully withdrawn.'
     else
       redirect_to @material, alert: @material.errors.full_messages.to_sentence
